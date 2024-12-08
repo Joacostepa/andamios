@@ -57,7 +57,7 @@ app.post("/cotizar", (req, res) => {
         );
 
         if (resultado) {
-            // Calcular el precio total
+            // Calcular el precio totales
             const precioTotal = resultado.precio_por_m2 * Number(m2);
             res.json({ success: true, precio: precioTotal });
         } else {
