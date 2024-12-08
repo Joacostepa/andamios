@@ -4,18 +4,22 @@ const fs = require("fs");
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware para manejar JSON y evitar problemas de CORS
 app.use(express.json());
 app.use(cors());
+
+// Configurar carpeta de contenido estático
+app.use(express.static("public"));
 
 // Archivo JSON con los datos
 const dataFile = "./data.json";
 
 // Ruta base para verificar que el servidor funciona
 app.get("/", (req, res) => {
-    res.send("Servidor funcionando correctamente");
+    // Enviar el archivo HTML principal
+    res.sendFile(__dirname + "/public/index.html");
 });
 
 // Manejador para solicitudes GET en /cotizar (solo como mensaje informativo)
