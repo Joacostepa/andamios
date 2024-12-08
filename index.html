@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotizador de Andamios</title>
+</head>
+<body>
+  <h1>Cotizador de Andamios</h1>
+  <form id="cotizador-form">
+    <label for="zona">Zona:</label>
+    <input type="text" id="zona" name="zona" required>
+    <label for="duracion">Duración (días):</label>
+    <input type="number" id="duracion" name="duracion" required>
+    <label for="m2">Metros cuadrados:</label>
+    <input type="number" id="m2" name="m2" required>
+    <button type="submit">Cotizar</button>
+  </form>
+  <p id="resultado"></p>
+
+  <script>
+    document.getElementById("cotizador-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const zona = document.getElementById("zona").value;
+      const duracion = document.getElementById("duracion").value;
+      const m2 = document.getElementById("m2").value;
+
+      const response = await fetch("http://localhost:3000/cotizar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ zona, duracion, m2 }),
+      });
+
+      const data = await response.json();
+      document.getElementById("resultado").textContent = data.success
+        ? `El precio es $${data.precio}`
+        : "No se encontraron resultados.";
+    });
+  </script>
+</body>
+</html>

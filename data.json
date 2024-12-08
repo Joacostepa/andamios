@@ -1,0 +1,19 @@
+[
+  {
+      "zona": "CABA",
+      "duracion": 5,
+      "precio_por_m2": 10
+  },
+  {
+      "zona": "GBA Norte",
+      "duracion": 10,
+      "precio_por_m2": 8
+  },
+  {
+      "zona": "GBA Sur",
+      "duracion": 15,
+      "precio_por_m2": 7
+  }
+]
+
+  

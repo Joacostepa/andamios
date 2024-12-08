@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Cotizador</title>
+</head>
+<body>
+    <h1>Probar Cotización</h1>
+    <button id="testButton">Enviar solicitud</button>
+    <p id="response"></p>
+
+    <script>
+        document.getElementById("testButton").addEventListener("click", async () => {
+            const response = await fetch("http://localhost:3000/cotizar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    zona: "CABA",
+                    duracion: 5,
+                    m2: 100
+                }),
+            });
+
+            const data = await response.json();
+            document.getElementById("response").textContent = JSON.stringify(data);
+        });
+    </script>
+</body>
+</html>
